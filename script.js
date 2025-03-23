@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        const API_KEY = 'YOUR_API_KEY'; // Replace with your actual API key
+        const API_KEY = 'YOUR_API_KEY';
         const API_URL = 'https://api.stability.ai/v1/generation/stable-diffusion-xl-1024-v1-0/text-to-image';
 
         generateBtn.disabled = true;
@@ -59,15 +59,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify({
                     text_prompts: [
                         {
-                            text: prompt + ", texture, seamless, tileable, 4k",
+                            text: `aerial view from above, bird's eye view, top down photograph, ${prompt}, seamless texture, highly detailed, 8k uhd, photorealistic, professional photography`,
                             weight: 1
+                        },
+                        {
+                            text: "blurry, low quality, distorted",
+                            weight: -1
                         }
                     ],
-                    cfg_scale: 7,
+                    cfg_scale: 8,
                     height: 1024,
                     width: 1024,
                     samples: 1,
-                    steps: 50,
+                    steps: 60,
+                    style_preset: "photographic"
                 })
             });
 
