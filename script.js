@@ -59,21 +59,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify({
                     text_prompts: [
                         {
-                            text: `ultra realistic photograph, ${prompt}, aerial view from above, detailed surface texture, high resolution surface detail, professional photography, sharp focus, crystal clear, 8k uhd, photorealistic, seamless pattern`,
+                            text: `ultra detailed photograph of ${prompt}, extreme close up surface texture, raw material photography, intricate surface details, rough textured surface, natural material, detailed granular structure, professional macro photography, sharp focus, natural lighting, 8k resolution`,
                             weight: 1
                         },
                         {
-                            text: "pixelated, digital art, illustration, painting, drawing, blurry, low resolution, artificial, cartoon",
+                            text: "noise pattern, abstract, smooth, artificial, computer generated, digital art, illustration, pattern, repetitive, synthetic",
                             weight: -1
                         }
                     ],
-                    cfg_scale: 10,
+                    cfg_scale: 12,
                     height: 1024,
                     width: 1024,
                     samples: 1,
-                    steps: 75,
+                    steps: 85,
                     style_preset: "photographic",
-                    image_strength: 0.8
+                    image_strength: 0.95
                 })
             });
 
