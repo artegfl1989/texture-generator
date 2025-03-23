@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return canvas;
     }
 
-    generateBtn.addEventListener('click', () => {
+    generateBtn.addEventListener('click', async () => {
         const prompt = promptInput.value.trim();
         
         if (!prompt) {
@@ -42,30 +42,41 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        const API_KEY = 'YOUR_API_KEY'; // Replace with your actual API key
+        const API_URL = 'https://api.stability.ai/v1/generation/stable-diffusion-xl-1024-v1-0/text-to-image';
+
         generateBtn.disabled = true;
         generateBtn.textContent = 'Generating...';
         texturePreview.innerHTML = '<p>Generating texture...</p>';
 
         try {
-            const canvas = document.createElement('canvas');
-            canvas.width = 1024;
-            canvas.height = 1024;
-            const ctx = canvas.getContext('2d');
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${API_KEY}`,
+                },
+                body: JSON.stringify({
+                    text_prompts: [
+                        {
+                            text: prompt + ", texture, seamless, tileable, 4k",
+                            weight: 1
+                        }
+                    ],
+                    cfg_scale: 7,
+                    height: 1024,
+                    width: 1024,
+                    samples: 1,
+                    steps: 50,
+                })
+            });
 
-            // Generate base noise texture
-            const noiseCanvas = generatePerlinNoise(1024, 1024);
-            ctx.drawImage(noiseCanvas, 0, 0);
-
-            // Add some variation
-            ctx.globalCompositeOperation = 'multiply';
-            for (let i = 0; i < 3; i++) {
-                const scale = Math.random() * 0.5 + 0.5;
-                ctx.drawImage(noiseCanvas, 
-                    0, 0, 1024, 1024,
-                    0, 0, 1024 * scale, 1024 * scale
-                );
+            if (!response.ok) {
+                throw new Error('API request failed');
             }
 
+            const result = await response.json();
+            
             // Display result
             const img = new Image();
             img.onload = () => {
@@ -73,8 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 texturePreview.appendChild(img);
                 downloadBtn.disabled = false;
             };
-            img.src = canvas.toDataURL('image/png');
-
+            img.src = `data:image/png;base64,${result.artifacts[0].base64}`;
         } catch (error) {
             console.error('Generation error:', error);
             texturePreview.innerHTML = '<p>Error generating texture</p>';
