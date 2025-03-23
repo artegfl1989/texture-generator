@@ -59,20 +59,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify({
                     text_prompts: [
                         {
-                            text: `aerial view from above, bird's eye view, top down photograph, ${prompt}, seamless texture, highly detailed, 8k uhd, photorealistic, professional photography`,
+                            text: `ultra realistic photograph, ${prompt}, aerial view from above, detailed surface texture, high resolution surface detail, professional photography, sharp focus, crystal clear, 8k uhd, photorealistic, seamless pattern`,
                             weight: 1
                         },
                         {
-                            text: "blurry, low quality, distorted",
+                            text: "pixelated, digital art, illustration, painting, drawing, blurry, low resolution, artificial, cartoon",
                             weight: -1
                         }
                     ],
-                    cfg_scale: 8,
+                    cfg_scale: 10,
                     height: 1024,
                     width: 1024,
                     samples: 1,
-                    steps: 60,
-                    style_preset: "photographic"
+                    steps: 75,
+                    style_preset: "photographic",
+                    image_strength: 0.8
                 })
             });
 
