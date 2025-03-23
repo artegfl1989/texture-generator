@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        const API_KEY = 'YOUR_API_KEY';
+        const API_KEY = 'sk-1Yw27y4YsUVbqFtDTRVlQmeH6jkXdbBLz1Y6wxUSZoefy1bd';
         const API_URL = 'https://api.stability.ai/v1/generation/stable-diffusion-xl-1024-v1-0/text-to-image';
 
         generateBtn.disabled = true;
@@ -59,21 +59,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify({
                     text_prompts: [
                         {
-                            text: `ultra detailed photograph of ${prompt}, extreme close up surface texture, raw material photography, intricate surface details, rough textured surface, natural material, detailed granular structure, professional macro photography, sharp focus, natural lighting, 8k resolution`,
+                            text: `ultra detailed 3D model of ${prompt}, botanical plant, detailed leaves and stems, 3D rendering, octane render, realistic textures, depth, volumetric lighting, high detail geometry, 8k, photorealistic, professional 3D modeling`,
                             weight: 1
                         },
                         {
-                            text: "noise pattern, abstract, smooth, artificial, computer generated, digital art, illustration, pattern, repetitive, synthetic",
+                            text: "2d, flat, drawing, sketch, cartoon, anime, illustration, painting, abstract, low quality",
                             weight: -1
                         }
                     ],
-                    cfg_scale: 12,
+                    cfg_scale: 15,
                     height: 1024,
                     width: 1024,
                     samples: 1,
-                    steps: 85,
-                    style_preset: "photographic",
-                    image_strength: 0.95
+                    steps: 90,
+                    style_preset: "3d-model",
+                    image_strength: 1
                 })
             });
 
