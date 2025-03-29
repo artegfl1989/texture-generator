@@ -3,41 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Electric Ship Motor Simulator</title>
+    <title>Virtual Hubble Telescope Simulator</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="simulator-container">
-        <h1>AI Electric Ship Motor Simulator</h1>
-        <div class="visualization">
-            <canvas id="motorCanvas" width="600" height="400"></canvas>
-        </div>
-        <div class="controls">
-            <div class="control-group">
-                <label>Speed (RPM):</label>
-                <input type="range" id="speedControl" min="0" max="1000" value="0">
-                <span id="speedValue">0</span>
+    <div class="container">
+        <header>
+            <h1>Virtual Hubble Telescope Simulator</h1>
+            <div class="controls">
+                <button id="zoomIn">Zoom In</button>
+                <button id="zoomOut">Zoom Out</button>
+                <button id="capture">Capture Image</button>
+                <select id="galaxySelect">
+                    <option value="andromeda">Andromeda Galaxy</option>
+                    <option value="milkyway">Milky Way</option>
+                    <option value="sombrero">Sombrero Galaxy</option>
+                    <option value="whirlpool">Whirlpool Galaxy</option>
+                    <option value="triangulum">Triangulum Galaxy</option>
+                    <option value="random">Random Deep Space</option>
+                </select>
             </div>
-            <div class="control-group">
-                <label>Load (%):</label>
-                <input type="range" id="loadControl" min="0" max="100" value="0">
-                <span id="loadValue">0</span>
+        </header>
+        
+        <main>
+            <div class="telescope-view">
+                <div class="telescope-frame">
+                    <canvas id="telescopeCanvas"></canvas>
+                    <div class="telescope-overlay"></div>
+                </div>
+                <div class="telescope-info">
+                    <h2 id="currentObject">Andromeda Galaxy</h2>
+                    <p id="objectInfo">Distance: 2.537 million light years</p>
+                    <div id="coordinates">
+                        <span>RA: 00h 42m 44.3s</span>
+                        <span>Dec: +41° 16' 9"</span>
+                    </div>
+                </div>
             </div>
-            <div class="control-group">
-                <label>Water Resistance:</label>
-                <input type="range" id="resistanceControl" min="0" max="100" value="20">
-                <span id="resistanceValue">20</span>
+            
+            <div class="captured-images">
+                <h3>Captured Images</h3>
+                <div id="gallery"></div>
             </div>
-            <button id="startAI">Start AI Control</button>
-            <button id="stopAI">Stop AI Control</button>
-        </div>
-        <div class="metrics">
-            <div>Power Consumption: <span id="powerConsumption">0</span> kW</div>
-            <div>Efficiency: <span id="efficiency">0</span>%</div>
-            <div>Temperature: <span id="temperature">20</span>°C</div>
-        </div>
+        </main>
+        
+        <footer>
+            <p>Virtual Hubble Telescope Simulator - Educational Project</p>
+        </footer>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
-    <script src="simulator.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.18.0/dist/tf.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
