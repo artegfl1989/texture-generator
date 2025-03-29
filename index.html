@@ -3,33 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Texture Generator for UE5</title>
+    <title>AI Electric Ship Motor Simulator</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>AI Texture Generator</h1>
-        <p>Create 4K textures for Unreal Engine 5</p>
-    </header>
-
-    <main>
-        <div class="generator-container">
-            <div class="input-section">
-                <textarea id="promptInput" placeholder="Describe your texture (e.g., 'Rough stone wall with moss, highly detailed, 4k resolution')"></textarea>
-                <button id="generateBtn">Generate Texture</button>
-            </div>
-            <div class="preview-section">
-                <div id="texturePreview">
-                    <p>Preview will appear here</p>
-                </div>
-                <button id="downloadBtn" disabled>Download Texture</button>
-            </div>
+    <div class="simulator-container">
+        <h1>AI Electric Ship Motor Simulator</h1>
+        <div class="visualization">
+            <canvas id="motorCanvas" width="600" height="400"></canvas>
         </div>
-    </main>
-
-    <footer>
-        <p>AI-Powered Texture Generator for Game Development</p>
-    </footer>
-    <script src="script.js"></script>
+        <div class="controls">
+            <div class="control-group">
+                <label>Speed (RPM):</label>
+                <input type="range" id="speedControl" min="0" max="1000" value="0">
+                <span id="speedValue">0</span>
+            </div>
+            <div class="control-group">
+                <label>Load (%):</label>
+                <input type="range" id="loadControl" min="0" max="100" value="0">
+                <span id="loadValue">0</span>
+            </div>
+            <div class="control-group">
+                <label>Water Resistance:</label>
+                <input type="range" id="resistanceControl" min="0" max="100" value="20">
+                <span id="resistanceValue">20</span>
+            </div>
+            <button id="startAI">Start AI Control</button>
+            <button id="stopAI">Stop AI Control</button>
+        </div>
+        <div class="metrics">
+            <div>Power Consumption: <span id="powerConsumption">0</span> kW</div>
+            <div>Efficiency: <span id="efficiency">0</span>%</div>
+            <div>Temperature: <span id="temperature">20</span>°C</div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="simulator.js"></script>
 </body>
 </html>
