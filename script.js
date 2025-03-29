@@ -102,11 +102,9 @@ let generatedGalaxyImage = null;
 let generatedPlanetImage = null;
 
 // Initialize the simulator
+// Update the initSimulator function to handle the view buttons
 async function initSimulator() {
-    // Create menu system
-    createMenuSystem();
-    
-    // Load TensorFlow.js model for random generation
+    // Load TensorFlow.js model for random galaxy generation
     try {
         // In a real application, you would load a pre-trained model here
         // For this demo, we'll simulate model loading
@@ -137,18 +135,55 @@ async function initSimulator() {
     
     captureBtn.addEventListener('click', captureImage);
     
+    // View mode buttons
+    const viewGalaxiesBtn = document.getElementById('viewGalaxies');
+    const viewPlanetsBtn = document.getElementById('viewPlanets');
+    
+    viewGalaxiesBtn.addEventListener('click', () => {
+        switchToViewMode('galaxies');
+        viewGalaxiesBtn.classList.add('active');
+        viewPlanetsBtn.classList.remove('active');
+    });
+    
+    viewPlanetsBtn.addEventListener('click', () => {
+        switchToViewMode('planets');
+        viewPlanetsBtn.classList.add('active');
+        viewGalaxiesBtn.classList.remove('active');
+    });
+    
     galaxySelect.addEventListener('change', (e) => {
-        if (e.target.value === 'planets-menu') {
-            switchToViewMode('planets');
-            return;
-        }
-        
         currentGalaxy = e.target.value;
-        currentPlanet = null;
-        currentViewMode = 'galaxies';
         currentZoom = 1;
         updateView();
     });
+    
+    document.getElementById('planetSelect').addEventListener('change', (e) => {
+        currentPlanet = e.target.value;
+        currentZoom = 1;
+        updateView();
+    });
+}
+
+// Switch between galaxies and planets view modes
+function switchToViewMode(mode) {
+    currentViewMode = mode;
+    
+    if (mode === 'galaxies') {
+        document.getElementById('galaxySelect').style.display = 'inline-block';
+        document.getElementById('planetSelect').style.display = 'none';
+        currentGalaxy = currentGalaxy || 'andromeda';
+        currentPlanet = null;
+    } else {
+        document.getElementById('galaxySelect').style.display = 'none';
+        document.getElementById('planetSelect').style.display = 'inline-block';
+        currentGalaxy = null;
+        // Don't reset currentPlanet if it's already set
+        if (!currentPlanet) {
+            document.getElementById('planetSelect').value = '';
+        }
+    }
+    
+    updateView();
 }
 
 // Create menu system
@@ -221,7 +256,7 @@ function switchToViewMode(mode) {
     if (mode === 'galaxies') {
         document.getElementById('galaxySelect').style.display = 'inline-block';
         document.getElementById('planetSelect').style.display = 'none';
-        currentGalaxy = 'andromeda';
+        currentGalaxy = currentGalaxy || 'andromeda';
         currentPlanet = null;
     } else {
         document.getElementById('galaxySelect').style.display = 'none';

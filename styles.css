@@ -147,3 +147,34 @@ footer {
     border-top: 1px solid #333;
     font-size: 14px;
 }
+
+
+/* Add these styles to your existing CSS file */
+
+.view-selector {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.view-btn {
+    background-color: #1a3a66;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-right: 5px;
+}
+
+.view-btn:hover {
+    background-color: #2a5999;
+}
+
+.view-btn.active {
+    background-color: #4da6ff;
+}
+
+#planetSelect, #galaxySelect {
+    min-width: 200px;
+}

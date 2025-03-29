@@ -10,11 +10,14 @@
     <div class="container">
         <header>
             <h1>Virtual Hubble Telescope Simulator</h1>
-            <!-- Update the controls section in your HTML file -->
             <div class="controls">
                 <button id="zoomIn">Zoom In</button>
                 <button id="zoomOut">Zoom Out</button>
                 <button id="capture">Capture Image</button>
+                <div class="view-selector">
+                    <button id="viewGalaxies" class="view-btn active">Galaxies</button>
+                    <button id="viewPlanets" class="view-btn">Planets</button>
+                </div>
                 <select id="galaxySelect">
                     <option value="andromeda">Andromeda Galaxy</option>
                     <option value="milkyway">Milky Way</option>
@@ -22,6 +25,15 @@
                     <option value="whirlpool">Whirlpool Galaxy</option>
                     <option value="triangulum">Triangulum Galaxy</option>
                     <option value="random">Random Deep Space (AI Generated)</option>
+                </select>
+                <select id="planetSelect" style="display: none;">
+                    <option value="" disabled selected>Select a Planet</option>
+                    <option value="jupiter">Jupiter</option>
+                    <option value="saturn">Saturn</option>
+                    <option value="mars">Mars</option>
+                    <option value="neptune">Neptune</option>
+                    <option value="uranus">Uranus</option>
+                    <option value="random-planet">Random Exoplanet (AI Generated)</option>
                 </select>
             </div>
         </header>
